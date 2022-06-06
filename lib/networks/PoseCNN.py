@@ -235,11 +235,11 @@ class PoseCNN(nn.Module):
         else:
             if cfg.TRAIN.VERTEX_REG:
                 if cfg.TRAIN.POSE_REG:
-                    return out_label, out_vertex, rois, out_pose, out_quaternion
+                    return out_prob, out_label, out_vertex, rois, out_pose, out_quaternion
                 else:
-                    return out_label, out_vertex, rois, out_pose
+                    return out_prob, out_label, out_vertex, rois, out_pose
             else:
-                return out_label
+                return out_prob, out_label
 
     def weight_parameters(self):
         return [param for name, param in self.named_parameters() if 'weight' in name]
